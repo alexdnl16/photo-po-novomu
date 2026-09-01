@@ -1,60 +1,95 @@
-const dropzone = document.querySelector('#dropzone');
-const fileInput = document.querySelector('#file-input');
-const preview = document.querySelector('#preview');
-const fileStatus = document.querySelector('#file-status');
-const demoButton = document.querySelector('#demo-button');
-const toast = document.querySelector('#toast');
+const carousel = document.querySelector('[data-carousel]');
 
-let toastTimer;
+if (carousel) {
+  const track = carousel.querySelector('#example-track');
+  const slides = [...track.querySelectorAll('.example-tile')];
+  const controls = carousel.querySelector('#carousel-controls');
+  const dots = carousel.querySelector('#carousel-dots');
+  const previous = carousel.querySelector('#carousel-prev');
+  const next = carousel.querySelector('#carousel-next');
+  const status = carousel.querySelector('#carousel-status');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let currentIndex = 0;
+  let timer;
+  let pointerStart = null;
 
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add('is-visible');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 3500);
+  function visibleCount() {
+    if (window.innerWidth <= 560) return 1;
+    if (window.innerWidth <= 850) return 2;
+    return 3;
+  }
+
+  function maxIndex() {
+    return Math.max(0, slides.length - visibleCount());
+  }
+
+  function makeDots(max) {
+    dots.replaceChildren();
+    for (let index = 0; index <= max; index += 1) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Показать примеры ${index + 1}`);
+      dot.addEventListener('click', () => goTo(index));
+      dots.append(dot);
+    }
+  }
+
+  function update(announce = false) {
+    const max = maxIndex();
+    currentIndex = Math.min(currentIndex, max);
+    const slideWidth = slides[0]?.getBoundingClientRect().width || 0;
+    const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
+    track.style.transform = `translateX(-${currentIndex * (slideWidth + gap)}px)`;
+    controls.hidden = max === 0;
+    previous.disabled = currentIndex === 0;
+    next.disabled = currentIndex === max;
+    makeDots(max);
+    [...dots.children].forEach((dot, index) => dot.classList.toggle('is-active', index === currentIndex));
+    if (announce) status.textContent = `Показаны примеры ${currentIndex + 1} из ${max + 1}`;
+  }
+
+  function goTo(index) {
+    currentIndex = Math.max(0, Math.min(index, maxIndex()));
+    update(true);
+    restartAutoPlay();
+  }
+
+  function advance() {
+    const max = maxIndex();
+    if (max === 0) return;
+    currentIndex = currentIndex >= max ? 0 : currentIndex + 1;
+    update();
+  }
+
+  function stopAutoPlay() {
+    window.clearInterval(timer);
+  }
+
+  function restartAutoPlay() {
+    stopAutoPlay();
+    if (!reducedMotion.matches && maxIndex() > 0) timer = window.setInterval(advance, 5000);
+  }
+
+  previous.addEventListener('click', () => goTo(currentIndex - 1));
+  next.addEventListener('click', () => goTo(currentIndex + 1));
+  carousel.addEventListener('mouseenter', stopAutoPlay);
+  carousel.addEventListener('mouseleave', restartAutoPlay);
+  carousel.addEventListener('focusin', stopAutoPlay);
+  carousel.addEventListener('focusout', (event) => {
+    if (!carousel.contains(event.relatedTarget)) restartAutoPlay();
+  });
+  track.addEventListener('pointerdown', (event) => { pointerStart = event.clientX; });
+  track.addEventListener('pointerup', (event) => {
+    if (pointerStart === null) return;
+    const distance = event.clientX - pointerStart;
+    if (Math.abs(distance) > 45) goTo(currentIndex + (distance < 0 ? 1 : -1));
+    pointerStart = null;
+  });
+  track.addEventListener('pointercancel', () => { pointerStart = null; });
+  window.addEventListener('resize', () => { update(); restartAutoPlay(); });
+  reducedMotion.addEventListener?.('change', restartAutoPlay);
+
+  update();
+  restartAutoPlay();
 }
-
-function showFile(file) {
-  if (!file || !file.type.startsWith('image/')) {
-    showToast('Пожалуйста, выберите изображение в формате PNG, JPG или WEBP.');
-    return;
-  }
-
-  if (file.size > 10 * 1024 * 1024) {
-    showToast('Файл слишком большой. Максимальный размер — 10 МБ.');
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.addEventListener('load', () => {
-    preview.style.backgroundImage = `url("${reader.result}")`;
-    dropzone.classList.add('has-preview');
-    fileStatus.textContent = `${file.name} · фото загружено`;
-    showToast('Фото добавлено. В этой демо-версии следующий шаг пока имитируется.');
-  });
-  reader.readAsDataURL(file);
-}
-
-dropzone.addEventListener('click', () => fileInput.click());
-dropzone.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault();
-    fileInput.click();
-  }
-});
-fileInput.addEventListener('change', (event) => showFile(event.target.files[0]));
-
-['dragenter', 'dragover'].forEach((eventName) => {
-  dropzone.addEventListener(eventName, (event) => {
-    event.preventDefault();
-    dropzone.classList.add('is-dragging');
-  });
-});
-['dragleave', 'drop'].forEach((eventName) => {
-  dropzone.addEventListener(eventName, (event) => {
-    event.preventDefault();
-    dropzone.classList.remove('is-dragging');
-  });
-});
-dropzone.addEventListener('drop', (event) => showFile(event.dataTransfer.files[0]));
-demoButton.addEventListener('click', () => showToast(fileInput.files[0] ? 'Отлично. В следующей версии здесь появится выбор стиля и оформление заказа.' : 'Сначала добавьте фотографию — это займёт всего несколько секунд.'));

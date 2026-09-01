@@ -116,13 +116,27 @@
 
       <section class="examples-section section shell" id="examples">
         <div class="section-heading section-heading--row reveal">
-          <div><p class="eyebrow">Демонстрационные примеры</p><h2>Посмотрите,<br /><em>что получится.</em></h2></div>
-          <p>Это примеры возможностей сервиса. Финальный результат зависит от исходной фотографии и вашей идеи.</p>
+          <div><p class="eyebrow">Демонстрационные примеры</p><h2>Посмотрите,<br /><em>что можно создать.</em></h2></div>
+          <p>Все изображения в этом разделе созданы с помощью искусственного интеллекта. Это демонстрационные примеры — фотографии реальных пользователей и клиентов здесь не размещаются.</p>
         </div>
-        <div class="example-strip reveal">
-          <div class="example-tile"><img src="assets/demo/before-after-portrait.png" alt="Демонстрация AI-портрета" /><span>AI-портрет</span></div>
-          <div class="example-tile"><img src="assets/demo/before-after-style.png" alt="Демонстрация нового образа" /><span>Новый образ</span></div>
-          <div class="example-tile"><img src="assets/demo/before-after-location.png" alt="Демонстрация изменения места" /><span>Другое место</span></div>
+        <div class="example-carousel reveal" data-carousel aria-roledescription="carousel" aria-label="Демонстрационные примеры">
+          <div class="example-carousel__viewport">
+            <div class="example-strip" id="example-track">
+              <div class="example-tile" role="group" aria-label="Пример 1 из 8"><img src="assets/demo/before-after-portrait.png" alt="Демонстрация AI-портрета" /><span>AI-портрет</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 2 из 8"><img src="assets/demo/before-after-style.png" alt="Демонстрация нового образа" /><span>Новый образ</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 3 из 8"><img src="assets/demo/before-after-location.png" alt="Демонстрация изменения места" /><span>Другое место</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 4 из 8"><img src="assets/demo/before-after-fullbody.png" alt="Демонстрация фотосессии в полный рост" /><span>Фотосессия в полный рост</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 5 из 8"><img src="assets/demo/before-after-hair-accessories.png" alt="Демонстрация новой причёски и аксессуаров" /><span>Причёска и аксессуары</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 6 из 8"><img src="assets/demo/before-after-luxury-car.png" alt="Демонстрация образа рядом с дорогим автомобилем" /><span>Стильный автомобиль</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 7 из 8"><img src="assets/demo/before-after-cinematic.png" alt="Демонстрация кинематографического образа" /><span>Кинематографический образ</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 8 из 8"><img src="assets/demo/before-after-professional.png" alt="Демонстрация профессионального портрета" /><span>Профессиональный портрет</span></div>
+            </div>
+          </div>
+          <div class="carousel-controls" id="carousel-controls" hidden>
+            <div class="carousel-dots" id="carousel-dots" aria-label="Выбор примера"></div>
+            <div class="carousel-arrows"><button class="carousel-arrow" id="carousel-prev" type="button" aria-label="Предыдущий пример">←</button><button class="carousel-arrow" id="carousel-next" type="button" aria-label="Следующий пример">→</button></div>
+          </div>
+          <p class="carousel-status" id="carousel-status" aria-live="polite"></p>
         </div>
       </section>
 
@@ -140,7 +154,14 @@
       </section>
     </main>
 
-    <footer class="site-footer shell"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">✦</span><span>Фото по-новому</span></a><p>Ваши фотографии. Новые возможности.</p><span>© 2026</span></footer>
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <footer class="site-footer shell">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">✦</span><span>Фото по-новому</span></a>
+      <div class="site-footer__info">
+        <p>Ваши фотографии. Новые возможности.</p>
+        <small class="site-footer__note">Изображения создаются автором проекта с использованием современных моделей искусственного интеллекта. На этапе тестового запуска услуга предоставляется бесплатно. Если результат вам понравится и вы захотите поддержать проект, буду рад добровольному вознаграждению.</small>
+      </div>
+      <span>© 2026</span>
+    </footer>
+    <script src="script.js"></script>
   </body>
 </html>
