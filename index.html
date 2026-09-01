@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Фото по-новому — создаём новые образы и красивые изображения из ваших фотографий с помощью AI."
+      content="Фото по-новому — создаю новые образы и красивые изображения из ваших фотографий с помощью AI."
     />
     <title>Фото по-новому — новая история вашей фотографии</title>
     <link rel="stylesheet" href="styles.css" />
@@ -39,7 +39,7 @@
           </div>
           <h1>Ваша фотография.<br /><em>Новая история.</em></h1>
           <p class="hero__lead">
-            Из одного снимка создаём фотосессии, новые образы и места, в которых хочется оказаться.
+            Пришлите обычную фотографию — я создам новый образ, профессиональный портрет или сцену по вашей идее.
           </p>
 
           <div class="hero__actions">
@@ -53,7 +53,7 @@
 
         <div class="hero__visual reveal reveal--delay" aria-label="Пример преобразования фотографии">
           <div class="hero-card">
-            <img src="assets/demo/before-after-portrait.png" alt="Портрет до и после преображения" />
+            <img src="assets/demo/before-after-portrait.webp" alt="Портрет до и после преображения" decoding="async" />
             <div class="hero-card__label hero-card__label--top">AI-портрет</div>
             <div class="hero-card__label hero-card__label--bottom"><span></span> До&nbsp;&nbsp; → &nbsp;&nbsp;После</div>
           </div>
@@ -68,6 +68,32 @@
         </div>
       </section>
 
+      <section class="examples-section section shell" id="examples">
+        <div class="section-heading section-heading--row reveal">
+          <div><p class="eyebrow">Демонстрационные примеры</p><h2>Посмотрите,<br /><em>что можно создать.</em></h2></div>
+          <p>Все изображения в этом разделе созданы с помощью искусственного интеллекта. Это демонстрационные примеры — фотографии реальных пользователей и клиентов здесь не размещаются.</p>
+        </div>
+        <div class="example-carousel reveal" data-carousel aria-roledescription="carousel" aria-label="Демонстрационные примеры">
+          <div class="example-carousel__viewport">
+            <div class="example-strip" id="example-track">
+              <div class="example-tile" role="group" aria-label="Пример 1 из 8"><img src="assets/demo/before-after-portrait.webp" alt="Демонстрация AI-портрета" loading="lazy" decoding="async" /><div class="example-tile__comparison" aria-hidden="true"><span>До</span><span>После</span></div><span class="example-tile__caption">AI-портрет</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 2 из 8"><img src="assets/demo/before-after-style.webp" alt="Демонстрация нового образа" loading="lazy" decoding="async" /><div class="example-tile__comparison" aria-hidden="true"><span>До</span><span>После</span></div><span class="example-tile__caption">Новый образ</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 3 из 8"><img src="assets/demo/before-after-location.webp" alt="Демонстрация изменения места" loading="lazy" decoding="async" /><div class="example-tile__comparison" aria-hidden="true"><span>До</span><span>После</span></div><span class="example-tile__caption">Другое место</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 4 из 8"><img src="assets/demo/before-after-fullbody.webp" alt="Демонстрация фотосессии в полный рост" loading="lazy" decoding="async" /><div class="example-tile__comparison" aria-hidden="true"><span>До</span><span>После</span></div><span class="example-tile__caption">Фотосессия в полный рост</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 5 из 8"><img src="assets/demo/before-after-hair-accessories.webp" alt="Демонстрация новой причёски и аксессуаров" loading="lazy" decoding="async" /><div class="example-tile__comparison" aria-hidden="true"><span>До</span><span>После</span></div><span class="example-tile__caption">Причёска и аксессуары</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 6 из 8"><img src="assets/demo/before-after-luxury-car.webp" alt="Демонстрация образа рядом с дорогим автомобилем" loading="lazy" decoding="async" /><div class="example-tile__comparison" aria-hidden="true"><span>До</span><span>После</span></div><span class="example-tile__caption">Стильный автомобиль</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 7 из 8"><img src="assets/demo/before-after-cinematic.webp" alt="Демонстрация кинематографического образа" loading="lazy" decoding="async" /><div class="example-tile__comparison" aria-hidden="true"><span>До</span><span>После</span></div><span class="example-tile__caption">Кинематографический образ</span></div>
+              <div class="example-tile" role="group" aria-label="Пример 8 из 8"><img src="assets/demo/before-after-professional.webp" alt="Демонстрация профессионального портрета" loading="lazy" decoding="async" /><div class="example-tile__comparison" aria-hidden="true"><span>До</span><span>После</span></div><span class="example-tile__caption">Профессиональный портрет</span></div>
+            </div>
+          </div>
+          <div class="carousel-controls" id="carousel-controls" hidden>
+            <div class="carousel-dots" id="carousel-dots" aria-label="Выбор примера"></div>
+            <div class="carousel-arrows"><button class="carousel-arrow" id="carousel-prev" type="button" aria-label="Предыдущий пример">←</button><button class="carousel-arrow" id="carousel-next" type="button" aria-label="Следующий пример">→</button></div>
+          </div>
+          <p class="carousel-status" id="carousel-status" aria-live="polite"></p>
+        </div>
+      </section>
+
       <section class="section shell" id="possibilities">
         <div class="section-heading reveal">
           <p class="eyebrow">Что можно сделать</p>
@@ -77,11 +103,11 @@
 
         <div class="service-grid">
           <article class="service-card service-card--large reveal">
-            <div class="service-card__image"><img src="assets/demo/before-after-style.png" alt="Изменение повседневного образа на элегантный" /></div>
+            <div class="service-card__image"><img src="assets/demo/before-after-style.webp" alt="Изменение повседневного образа на элегантный" loading="lazy" decoding="async" /></div>
             <div class="service-card__body"><span class="card-number">01</span><h3>Новый образ</h3><p>Попробуйте другой стиль, одежду или настроение фотосессии.</p><a href="#contact" class="text-link">Создать образ <span>↗</span></a></div>
           </article>
           <article class="service-card reveal reveal--delay-short">
-            <div class="service-card__image"><img src="assets/demo/before-after-location.png" alt="Изменение домашнего фона на побережье" /></div>
+            <div class="service-card__image"><img src="assets/demo/before-after-location.webp" alt="Изменение домашнего фона на побережье" loading="lazy" decoding="async" /></div>
             <div class="service-card__body"><span class="card-number">02</span><h3>Другое место</h3><p>Окажитесь на море, в горах, в любимом городе или в интерьере мечты.</p><a href="#contact" class="text-link">Изменить фон <span>↗</span></a></div>
           </article>
           <article class="service-card service-card--soft reveal reveal--delay">
@@ -95,7 +121,7 @@
         <div class="shell story-layout">
           <div class="story-visual reveal">
             <div class="story-orbit story-orbit--one"></div><div class="story-orbit story-orbit--two"></div>
-            <div class="story-photo"><img src="assets/demo/before-after-location.png" alt="Фотография, превращённая в сцену на побережье" /></div>
+            <div class="story-photo"><img src="assets/demo/before-after-location.webp" alt="Фотография, превращённая в сцену на побережье" loading="lazy" decoding="async" /></div>
             <span class="story-tag story-tag--one">ваша идея</span><span class="story-tag story-tag--two">новый результат</span>
           </div>
           <div class="story-copy reveal reveal--delay">
@@ -104,35 +130,9 @@
             <div class="steps">
               <div class="step"><span>01</span><div><h3>Напишите мне</h3><p>Выберите удобный способ связи и расскажите, какой результат хотите получить.</p></div></div>
               <div class="step"><span>02</span><div><h3>Пришлите фотографию</h3><p>Отправьте обычный снимок с телефона в мессенджере или по почте.</p></div></div>
-              <div class="step"><span>03</span><div><h3>Получите результат</h3><p>Мы создадим изображение и аккуратно доработаем детали.</p></div></div>
+              <div class="step"><span>03</span><div><h3>Получите результат</h3><p>Я создам изображение и аккуратно доработаю детали.</p></div></div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="examples-section section shell" id="examples">
-        <div class="section-heading section-heading--row reveal">
-          <div><p class="eyebrow">Демонстрационные примеры</p><h2>Посмотрите,<br /><em>что можно создать.</em></h2></div>
-          <p>Все изображения в этом разделе созданы с помощью искусственного интеллекта. Это демонстрационные примеры — фотографии реальных пользователей и клиентов здесь не размещаются.</p>
-        </div>
-        <div class="example-carousel reveal" data-carousel aria-roledescription="carousel" aria-label="Демонстрационные примеры">
-          <div class="example-carousel__viewport">
-            <div class="example-strip" id="example-track">
-              <div class="example-tile" role="group" aria-label="Пример 1 из 8"><img src="assets/demo/before-after-portrait.png" alt="Демонстрация AI-портрета" /><span>AI-портрет</span></div>
-              <div class="example-tile" role="group" aria-label="Пример 2 из 8"><img src="assets/demo/before-after-style.png" alt="Демонстрация нового образа" /><span>Новый образ</span></div>
-              <div class="example-tile" role="group" aria-label="Пример 3 из 8"><img src="assets/demo/before-after-location.png" alt="Демонстрация изменения места" /><span>Другое место</span></div>
-              <div class="example-tile" role="group" aria-label="Пример 4 из 8"><img src="assets/demo/before-after-fullbody.png" alt="Демонстрация фотосессии в полный рост" /><span>Фотосессия в полный рост</span></div>
-              <div class="example-tile" role="group" aria-label="Пример 5 из 8"><img src="assets/demo/before-after-hair-accessories.png" alt="Демонстрация новой причёски и аксессуаров" /><span>Причёска и аксессуары</span></div>
-              <div class="example-tile" role="group" aria-label="Пример 6 из 8"><img src="assets/demo/before-after-luxury-car.png" alt="Демонстрация образа рядом с дорогим автомобилем" /><span>Стильный автомобиль</span></div>
-              <div class="example-tile" role="group" aria-label="Пример 7 из 8"><img src="assets/demo/before-after-cinematic.png" alt="Демонстрация кинематографического образа" /><span>Кинематографический образ</span></div>
-              <div class="example-tile" role="group" aria-label="Пример 8 из 8"><img src="assets/demo/before-after-professional.png" alt="Демонстрация профессионального портрета" /><span>Профессиональный портрет</span></div>
-            </div>
-          </div>
-          <div class="carousel-controls" id="carousel-controls" hidden>
-            <div class="carousel-dots" id="carousel-dots" aria-label="Выбор примера"></div>
-            <div class="carousel-arrows"><button class="carousel-arrow" id="carousel-prev" type="button" aria-label="Предыдущий пример">←</button><button class="carousel-arrow" id="carousel-next" type="button" aria-label="Следующий пример">→</button></div>
-          </div>
-          <p class="carousel-status" id="carousel-status" aria-live="polite"></p>
         </div>
       </section>
 
@@ -146,6 +146,7 @@
           </div>
           <div class="message-example"><small>Пример сообщения</small><p>«Здравствуйте! Хочу сделать из этой фотографии красивый портрет в стиле профессиональной фотосессии. Можно попробовать другой образ и фон. Прикрепляю фото».</p></div>
           <div class="contact-remark"><span>✦</span> Можно написать своими словами — я помогу оформить идею.</div>
+          <p class="privacy-note"><span aria-hidden="true">⌁</span> Ваши фотографии используются только для создания заказа и не публикуются без вашего согласия.</p>
         </div>
       </section>
     </main>
